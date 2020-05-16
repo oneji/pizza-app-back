@@ -15,8 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('login', 'Api\AuthController@login')->name('api.login');
-Route::get('login', function() {
-    return 'asdsad';
+
+Route::namespace('Api')->group(function() {
+    Route::get('pizzas', 'PizzaController@getAll');
+    Route::get('pizzas/getByCategory/{categoryId}', 'PizzaController@getByCategory');
+    Route::get('pizzas/getById/{pizzaId}', 'PizzaController@getById');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

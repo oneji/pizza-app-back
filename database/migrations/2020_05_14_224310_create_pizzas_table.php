@@ -18,6 +18,7 @@ class CreatePizzasTable extends Migration
             $table->string('name');
             $table->string('image')->nullable();
             $table->integer('quantity');
+            $table->text('description')->nullable();
             $table->unsignedBigInteger('pizza_category_id');
             $table->timestamps();
 
