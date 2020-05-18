@@ -14,12 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('login', 'Api\AuthController@login')->name('api.login');
 
 Route::namespace('Api')->group(function() {
+    Route::post('login', 'AuthController@login')->name('api.login');
+    
     Route::get('pizzas', 'PizzaController@getAll');
     Route::get('pizzas/getByCategory/{categoryId}', 'PizzaController@getByCategory');
     Route::get('pizzas/getById/{pizzaId}', 'PizzaController@getById');
+    
+    Route::post('cart/getInfo', 'CartController@getInfo');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {

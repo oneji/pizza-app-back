@@ -48,4 +48,31 @@ class Pizza extends Model
     {
         return static::with('pizza_sizes')->where('id', $pizzaId)->first();
     }
+
+    /**
+     * Get info for cart
+     */
+    public static function getForCartInfo($cartItems)
+    {
+        $pizzas = [];
+        foreach ($cartItems as $item) {
+            $pizza = static::with('pizza_sizes')->where('id', $item['pizzaId'])->first();
+            // Determine total prices by pizza size
+            foreach ($pizza->pizza_sizes as $size) {
+                if($size->id == $item['sizeId']) {
+                    $pizza->total_price_usd = $size->pivot->price_usd * $item['quantity'];
+                    $pizza->total_price_euro = $size->pivot->price_euro * $item['quantity'];
+                    $pizza->quantity = $item['quantity'];
+                    $pizza->size_name = $size->name;
+                    $pizza->item_id = $item['id'];
+                    $pizza->price_usd = $size->pivot->price_usd;
+                    $pizza->price_euro = $size->pivot->price_euro;
+                }
+            }
+
+            $pizzas[] = $pizza;
+        }
+
+        return $pizzas;
+    }
 }
