@@ -23,6 +23,7 @@ Route::namespace('Api')->group(function() {
     Route::get('pizzas/getById/{pizzaId}', 'PizzaController@getById');
     
     Route::post('cart/getInfo', 'CartController@getInfo');
+    Route::post('order', 'OrderController@store');
 });
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
