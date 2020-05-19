@@ -32,4 +32,18 @@ class OrderController extends Controller
             'order' => $orderData
         ]);
     }
+
+    /**
+     * Get all orders of the user
+     */
+    public function index(Request $request)
+    {
+        $user = $request->user();
+        $orders = Order::getAll($user->id);
+
+        return response()->json([
+            'ok' => true,
+            'orders' => $orders
+        ]);
+    }
 }

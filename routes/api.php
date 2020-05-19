@@ -17,13 +17,18 @@ use Illuminate\Support\Facades\Route;
 
 Route::namespace('Api')->group(function() {
     Route::post('login', 'AuthController@login');
-    Route::middleware('auth:api')->get('fetchUser', 'AuthController@fetchUser');
     
     Route::get('pizzas', 'PizzaController@getAll');
     Route::get('pizzas/getByCategory/{categoryId}', 'PizzaController@getByCategory');
     Route::get('pizzas/getById/{pizzaId}', 'PizzaController@getById');
     
     Route::post('cart/getInfo', 'CartController@getInfo');
-    Route::post('order', 'OrderController@store');
+    Route::post('orders', 'OrderController@store');
+    
+    Route::middleware('auth:api')->group(function () {
+        Route::get('fetchUser', 'AuthController@fetchUser');
+        Route::get('orders', 'OrderController@index');
+    });
+    
 
 });

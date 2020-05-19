@@ -52,4 +52,21 @@ class Order extends Model
 
         return $order;
     }
+
+    /**
+     * Get all user's orders
+     */
+    public static function getAll($userId)
+    {
+        return static::with([ 
+            'order_items' => function($query) {
+                $query->join('pizzas', 'pizzas.id', '=', 'order_items.pizza_id')
+                    ->join('pizza_sizes', 'pizza_sizes.id', '=', 'order_items.pizza_size_id')
+                    ->select('pizzas.name as pizza_name', 'pizzas.image', 'order_items.*', 'pizza_sizes.name as size_name');
+            } 
+        ])
+        ->where('user_id', $userId)
+        ->orderBy('orders.created_at', 'desc')
+        ->get();
+    }
 }
