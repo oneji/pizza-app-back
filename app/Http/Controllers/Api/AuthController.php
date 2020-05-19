@@ -34,4 +34,15 @@ class AuthController extends Controller
             ]);
         } 
     }
+
+    /**
+     * 
+     */
+    public function fetchUser(Request $request)
+    {
+        return response()->json([
+            'ok' => true,
+            'user' => $request->user()
+        ]);
+    }
 }

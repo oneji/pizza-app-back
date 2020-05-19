@@ -16,7 +16,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::namespace('Api')->group(function() {
-    Route::post('login', 'AuthController@login')->name('api.login');
+    Route::post('login', 'AuthController@login');
+    Route::middleware('auth:api')->get('fetchUser', 'AuthController@fetchUser');
     
     Route::get('pizzas', 'PizzaController@getAll');
     Route::get('pizzas/getByCategory/{categoryId}', 'PizzaController@getByCategory');
@@ -24,8 +25,5 @@ Route::namespace('Api')->group(function() {
     
     Route::post('cart/getInfo', 'CartController@getInfo');
     Route::post('order', 'OrderController@store');
-});
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
 });
