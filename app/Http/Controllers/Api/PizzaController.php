@@ -12,6 +12,10 @@ class PizzaController extends Controller
 {
     /**
      * Get all the pizzas from the db
+     * 
+     * @param   \Illuminate\Http\Request $request
+     * 
+     * @return  \Illuminate\Http\JsonResponse
      */
     public function getAll(Request $request)
     {
@@ -28,7 +32,11 @@ class PizzaController extends Controller
     }
 
     /**
+     * Get pizzas by category
      * 
+     * @param   int $categoryId
+     * 
+     * @return  \Illuminate\Http\JsonResponse
      */
     public function getByCategory($categoryId)
     {
@@ -41,7 +49,11 @@ class PizzaController extends Controller
     }
 
     /**
+     * Get pizza by id
      * 
+     * @param   int $pizzaId
+     * 
+     * @return  \Illuminate\Http\JsonResponse
      */
     public function getById($pizzaId)
     {

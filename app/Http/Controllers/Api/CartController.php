@@ -8,6 +8,13 @@ use App\Pizza;
 
 class CartController extends Controller
 {
+    /**
+     * Get all the available cart info
+     * 
+     * @param   \Illuminate\Http\Request $request
+     * 
+     * @return  \Illuminate\Http\JsonResponse
+     */
     public function getInfo(Request $request)
     {
         $cartItems = $request->input();

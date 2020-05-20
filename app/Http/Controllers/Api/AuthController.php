@@ -11,7 +11,9 @@ class AuthController extends Controller
     /**
      * Login the user and send the token back
      *
-     * @return \Illuminate\Http\Response
+     * @param   \Illuminate\Http\Request $request
+     * 
+     * @return  \Illuminate\Http\JsonResponse
      */
     public function login(Request $request)
     {
@@ -36,7 +38,11 @@ class AuthController extends Controller
     }
 
     /**
+     * Fetch the user by token
      * 
+     * @param   \Illuminate\Http\Request $request
+     * 
+     * @return  \Illuminate\Http\JsonResponse 
      */
     public function fetchUser(Request $request)
     {

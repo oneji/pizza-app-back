@@ -22,13 +22,22 @@ class Pizza extends Model
         return $this->belongsTo('App\PizzaCategory');
     }
 
+    /**
+     * Get all availabel pizzas
+     * 
+     * @return collection
+     */
     public static function getAll()
     {
         return static::with('pizza_sizes')->get();
     }
 
     /**
+     * Get pizzas by category
      * 
+     * @param int $categoryId
+     * 
+     * @return collection
      */
     public static function getByCategory($categoryId)
     {
@@ -42,7 +51,11 @@ class Pizza extends Model
     }
 
     /**
+     * Get the pizza by id
      * 
+     * @param int $pizzaId
+     * 
+     * @return object
      */
     public static function getById($pizzaId)
     {
@@ -51,6 +64,10 @@ class Pizza extends Model
 
     /**
      * Get info for cart
+     * 
+     * @param array $cartItems
+     * 
+     * @return collection $pizzas
      */
     public static function getForCartInfo($cartItems)
     {

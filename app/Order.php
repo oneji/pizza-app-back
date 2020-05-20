@@ -30,6 +30,13 @@ class Order extends Model
         return $this->hasMany('App\OrderItem');
     }
 
+    /**
+     * Store a newly created order in the db
+     * 
+     * @param array $orderData
+     * 
+     * @return object
+     */
     public static function store($orderData)
     {
         $order = new Order($orderData);
@@ -55,6 +62,10 @@ class Order extends Model
 
     /**
      * Get all user's orders
+     * 
+     * @param int $userId
+     * 
+     * @return collection
      */
     public static function getAll($userId)
     {

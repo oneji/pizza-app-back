@@ -10,7 +10,11 @@ use App\Order;
 class OrderController extends Controller
 {
     /**
+     * Store a newly created order in the db
      * 
+     * @param   \Illuminate\Http\Requests\StoreOrderRequest $request
+     * 
+     * @return  \Illuminate\Http\JsonResponse
      */
     public function store(StoreOrderRequest $request)
     {
@@ -35,6 +39,10 @@ class OrderController extends Controller
 
     /**
      * Get all orders of the user
+     * 
+     * @param   \Illuminate\Http\Request $request
+     * 
+     * @return  \Illuminate\Http\JsonResponse
      */
     public function index(Request $request)
     {
