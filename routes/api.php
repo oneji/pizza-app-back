@@ -29,6 +29,4 @@ Route::namespace('Api')->group(function() {
         Route::get('fetchUser', 'AuthController@fetchUser');
         Route::get('orders', 'OrderController@index');
     });
-    
-
 });

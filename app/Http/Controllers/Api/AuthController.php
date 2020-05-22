@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\LoginRequest;
 use Auth;
 
 class AuthController extends Controller
@@ -11,11 +12,11 @@ class AuthController extends Controller
     /**
      * Login the user and send the token back
      *
-     * @param   \Illuminate\Http\Request $request
+     * @param   \App\Http\Requests\LoginRequest $request
      * 
      * @return  \Illuminate\Http\JsonResponse
      */
-    public function login(Request $request)
+    public function login(LoginRequest $request)
     {
         $credentials = [
             'email' => $request->email,
@@ -32,7 +33,8 @@ class AuthController extends Controller
             ]);
         }  else{ 
             return response()->json([
-                'ok' => false
+                'ok' => false,
+                'message' => 'Incorrect email or password'
             ]);
         } 
     }

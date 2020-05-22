@@ -44,20 +44,20 @@ class Order extends Model
 
         // Save order items
         $items = [];
-        foreach ($orderData['orderItems'] as $item) {
-            $items[] = [
-                'pizza_id' => $item['pizzaId'],
-                'quantity' => $item['quantity'],
-                'pizza_size_id' => $item['sizeId'],
-                'order_id' => $order['id'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ];
+        if(isset($orderData['orderItems'])) {
+            foreach ($orderData['orderItems'] as $item) {
+                $items[] = [
+                    'pizza_id' => $item['pizzaId'],
+                    'quantity' => $item['quantity'],
+                    'pizza_size_id' => $item['sizeId'],
+                    'order_id' => $order['id'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ];
+            }
         }
 
         OrderItem::insert($items);
-
-        return $order;
     }
 
     /**

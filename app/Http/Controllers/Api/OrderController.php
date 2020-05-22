@@ -28,12 +28,11 @@ class OrderController extends Controller
             'orderItems' => $request->orderItems
         ];
 
-        $order = Order::store($orderData);
+        Order::store($orderData);
 
         return response()->json([
             'ok' => true,
-            'message' => 'You successfully order some pizzaaaaaa ;)',
-            'order' => $orderData
+            'message' => 'You successfully order some pizzaaaaaa ;)'
         ]);
     }
 
