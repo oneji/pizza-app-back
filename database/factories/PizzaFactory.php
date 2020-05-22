@@ -8,7 +8,7 @@ use Carbon\Carbon;
 
 $factory->define(Pizza::class, function (Faker $faker) {
     return [
-        'name' => 'Pizza',
+        'name' => 'Pizza ' . $faker->randomDigit,
         'image' => null,
         'pizza_category_id' => 1,
         'description' => $faker->realText($maxNbChars = 50, $indexSize = 2),
